@@ -1,0 +1,78 @@
+<%- include("partials/header"); -%>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/start">Jan & Steffi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/aktuelles">Aktuelles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mitbringListe">Mitbringsl</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Anfahrt
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <% if (category === "A") { %>
+            <a class="dropdown-item" href="/standesamt">Standesamt</a>
+            <a class="dropdown-item" href="/truderinger-wirtshaus">Mittagessen</a>
+            <a class="dropdown-item" href="/feuerwehr">Feier</a>
+          <% } else if (category === "B") { %>
+            <a class="dropdown-item" href="/feuerwehr">Feier</a>
+          <% } %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Einstellungen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/gaeste-verwaltung">Gästeverwaltung</a>
+          <a class="dropdown-item" href="/change-email">Email ändern</a>
+          <a class="dropdown-item" href="/change-password">Passwort ändern</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+ <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <img src="public/images/IMG_6557.jpeg" alt="Herz-aus-Muscheln-im-Sand">
+      </div>
+      <div class="col-md-auto">
+        <h1 class="starting-page">Einladung</h1>
+        <h4 class="starting-page">- zu unserer -</h4>
+        <h1 class="starting-page">Hochzeit</h1>
+        <h4 class="starting-page">- am -</h4>
+        <h3 class="starting-page">5. August 2021</h3>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>Wir möchten euch hiermit herzlich zu unserer Hochzeit am 5. August 2021 einladen.</p>
+          <% if (category === "A") { %>
+            
+            <p>Die Traufeier beginnt um 11:00 Uhr im Trausaal des Standesamtes Neubiberg. Leider steht zur Zeit nicht der Trausaal im Rathaus von Neubiberg zur Verfügung. Eine Anfahrtskizze findet ihr unter dem Punkt <a href="/standesamt">Anfahrt</a>.</a></p>
+          <% } else if (category === "B") { %>
+            <p>Gemeinsam wollen wir auf unsere Vermählung anstoßen. Die Feier soll im Stüberl des Feuerwehrgerätehauses in Unterbiberg stattfinden. Los geht es ab 17:30 Uhr. Eine Anfahrtskizze findet ihr unter dem Punkt <a href="/feuerwehr">Anfahrt</a>.</p>
+          <% } %>
+          
+          <p>Falls ihr noch Fragen habt könnt ihr euch gerne an uns wenden. Am einfachsten wäre eine Mail an <a href="mailto:familie-girst@posteo.de">uns</a>.</p>
+        </div>
+    </div>
+  </div>
+
+<%- include("partials/footer"); -%>

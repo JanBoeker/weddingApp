@@ -1,0 +1,100 @@
+<%- include("partials/header"); -%>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/start">Jan & Steffi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/aktuelles">Aktuelles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mitbringListe">Mitbringsl</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Anfahrt
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <% if (category === "A") { %>
+            <a class="dropdown-item" href="/standesamt">Standesamt</a>
+            <a class="dropdown-item" href="/truderinger-wirtshaus">Mittagessen</a>
+            <a class="dropdown-item" href="/feuerwehr">Feier</a>
+          <% } else if (category === "B") { %>
+            <a class="dropdown-item" href="/feuerwehr">Feier</a>
+          <% } %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Einstellungen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/gaeste-verwaltung">Gästeverwaltung</a>
+          <a class="dropdown-item" href="/change-email">Email ändern</a>
+          <a class="dropdown-item" href="/change-password">Passwort ändern</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div>
+  <div id="heading">
+    <h1>Ich bringe mit...</h1>
+    <p>Wer gerne etwas zu unserer kleinen Feier beitragen möchte darf sich gerne etwas aus der Liste aussuchen, oder noch etwas eigenes hinzufügen. Wir haben bisher nur ein paar Basis hinzugefügt die wir gerne hätten. Sollen nicht alle Einträge vergeben werden können, ist das aber auch kein Problem. Für das leibliche Wohl wird ausreichen gesorgt. Wir freuen uns auf euch...</p>
+  </div>
+
+  <div class="box">
+    <% checkedItems.forEach(function(item){ %>
+      <% console.log(item.checked) %>
+      <%  if (item.checked === false) { %>
+        <form action="/updateItem" method="post">
+          <div class="item">
+            <input type="checkbox" onChange="this.form.submit()" name="checkbox" value="<%= item._id %>">
+            <p><%= item.name %></p>
+          </div>
+          <input type="hidden" name="listName" value="<%= listTitle %>">
+        </form>
+      <% } %>
+    <% }) %>
+  
+    <form class="item" action="/newItem" method="post">
+      <input class="text-input-item" type="text" name="newItem" placeholder="Neu" autocomplete="off">
+      <button class="button-mitbringsl" type="submit" name="list" value="<%= listTitle %>">
+        <i class="far fa-plus-circle"></i>
+      </button>
+    </form>
+  </div>
+
+  <hr>
+
+  <div id="heading">
+    <h1>Was es bereits gibt...</h1>
+    <p>Dies Liste soll aufzeigen was bereits von Gästen mitgebracht wird. Vielen Dank an alle die etwas beisteuern...</p>
+  </div>
+  <div class="box">
+    <% checkedItems.forEach(function(item){ %>
+      <% console.log(item.checked) %>
+      <%  if (item.checked === true) { %>
+        <p><i class="far fa-check-circle checked"></i> <%= item.name %> </p>
+        <hr>
+      <% } %>
+    <% }) %>
+  </div>
+
+
+
+
+</div>
+
+<%- include("partials/footer"); -%>

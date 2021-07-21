@@ -1,0 +1,97 @@
+<%- include("partials/header"); -%>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/start">Jan & Steffi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/aktuelles">Aktuelles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mitbringListe">Mitbringsl</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Anfahrt
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <% if (category === "A") { %>
+            <a class="dropdown-item" href="/standesamt">Standesamt</a>
+            <a class="dropdown-item" href="/truderinger-wirtshaus">Mittagessen</a>
+            <a class="dropdown-item" href="/feuerwehr">Feier</a>
+          <% } else if (category === "B") { %>
+            <a class="dropdown-item" href="/feuerwehr">Feier</a>
+          <% } %>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Einstellungen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/gaeste-verwaltung">Gästeverwaltung</a>
+          <a class="dropdown-item" href="/change-email">Email ändern</a>
+          <a class="dropdown-item" href="/change-password">Passwort ändern</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1>Gast anlegen</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Makes POST request to /register route -->
+          <form action="/add-guest" method="POST">
+            <div class="form-group">
+              <label>Vorname</label>
+              <input type="text" class="form-control" name="firstname" required>
+            </div>
+            <div class="form-group">
+              <label>Nachname</label>
+              <input type="text" class="form-control" name="lastname" required>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-dark">Ausführen</button>
+          </form>
+
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h1>Mir zugeordnete Gäste</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+
+          <%  guests.forEach(function(guest){ %>
+            <p><span> <%=guest.lastname%> </span>, <span> <%=guest.firstname%> </span></p>
+          <% }) %>
+
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<%- include("partials/footer"); -%>
