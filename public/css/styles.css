@@ -17,6 +17,10 @@ img {
   border-radius: 20px;
 }
 
+p {
+  text-align: justify;
+}
+
 .starting-page {
   font-family: 'Tangerine', cursive;
   text-align: center;
