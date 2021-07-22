@@ -1,79 +1,91 @@
 <%- include("partials/header"); -%>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/start">Jan & Steffi</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/aktuelles">Aktuelles</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/mitbringListe">Mitbringsl</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Anfahrt
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-          <% if (category === "A") { %>
-            <a class="dropdown-item" href="/standesamt">Standesamt</a>
-            <a class="dropdown-item" href="/truderinger-wirtshaus">Mittagessen</a>
-            <a class="dropdown-item" href="/feuerwehr">Feier</a>
-          <% } else if (category === "B") { %>
-            <a class="dropdown-item" href="/feuerwehr">Feier</a>
-          <% } %>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Einstellungen
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/gaeste-verwaltung">Gästeverwaltung</a>
-          <a class="dropdown-item" href="/change-email">Email ändern</a>
-          <a class="dropdown-item" href="/change-password">Passwort ändern</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<h1><a href="https://truderingerwirtshaus.de/tageskartn/">Truderinger Wirtshaus</a></h1>
-<div class="card">
-    <div class="card-body">
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-                <div style="overflow:hidden;resize:none;max-width:100%;width:500px;height:500px;">
-                    <div id="googlemaps-display" style="height:100%; width:100%;max-width:100%;">
-                        <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Truderinger+Wirtshaus&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
-                    </div>
-                    <a class="codefor-google-map" rel="nofollow" href="https://www.embed-map.com" id="grabmap-authorization">https://www.embed-map.com</a>
-                    <style>#googlemaps-display img{max-width:none!important;background:none!important;font-size: inherit;font-weight:inherit;}</style>
-                </div>
-            </div>
-            <div class="col-md-auto">
-              <h3>Wann?</h3>
-              <p>Wir haben für 13:00 Uhr einen Tisch reserviert.</p>
-              <br>
-              <h3>Wo?</h3>
-                <address>
-                    ´s Truderinger Wirtshaus<br>
-                    Kirchtruderinger Str. 17<br>
-                    81829 München
-                </address>
-            </div>
-        </div>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/start"><i class="far fa-heart"></i> Jan & Steffi</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
-</div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/aktuelles">Aktuelles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mitbringListe">Mitbringsl</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Anfahrt
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-<%- include("partials/footer"); -%>
+            <% if (category==="A" ) { %>
+              <a class="dropdown-item" href="/standesamt">Standesamt</a>
+              <a class="dropdown-item" href="/truderinger-wirtshaus">Mittagessen</a>
+              <a class="dropdown-item" href="/feuerwehr">Feier</a>
+              <% } else if (category==="B" ) { %>
+                <a class="dropdown-item" href="/feuerwehr">Feier</a>
+                <% } %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Einstellungen
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/gaeste-verwaltung">Gästeverwaltung</a>
+            <a class="dropdown-item" href="/change-email">Email ändern</a>
+            <a class="dropdown-item" href="/change-password">Passwort ändern</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <h1><a href="https://truderingerwirtshaus.de/tageskartn/">Truderinger Wirtshaus</a></h1>
+  <div class="card">
+    <div class="card-body">
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          <div style="overflow:hidden;resize:none;max-width:100%;width:500px;height:500px;">
+            <div id="googlemaps-display" style="height:100%; width:100%;max-width:100%;">
+              <iframe style="height:100%;width:100%;border:0;" frameborder="0"
+                src="https://www.google.com/maps/embed/v1/place?q=Truderinger+Wirtshaus&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+            </div>
+            <a class="codefor-google-map" rel="nofollow" href="https://www.embed-map.com"
+              id="grabmap-authorization">https://www.embed-map.com</a>
+            <style>
+              #googlemaps-display img {
+                max-width: none !important;
+                background: none !important;
+                font-size: inherit;
+                font-weight: inherit;
+              }
+            </style>
+          </div>
+        </div>
+        <div class="col-md-auto">
+          <h3>Wann?</h3>
+          <p>Wir haben für 13:00 Uhr einen Tisch reserviert.</p>
+          <br>
+          <h3>Wo?</h3>
+          <address>
+            ´s Truderinger Wirtshaus<br>
+            Kirchtruderinger Str. 17<br>
+            81829 München
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("partials/footer"); -%>

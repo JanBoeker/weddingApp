@@ -267,7 +267,6 @@ app.get("/mitbringliste", (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            console.log(foundItems);
             res.render("mitbringliste", {
               listTitle: "Today",
               checkedItems: foundItems,
@@ -460,12 +459,10 @@ app.get("/compose-blogpost", (req, res) => {
 //////////////////////////// register a new user ////////////////////////////
 app.post("/register", function (req, res) {
 
-  console.log(req.body);
-
   User.register({
-      username: req.body.username,
-      category: req.body.category
-    },
+    username: req.body.username,
+    category: req.body.category
+  },
     req.body.password,
     function (err, user) {
       if (err) {
@@ -659,14 +656,13 @@ app.post("/updateItem", function (req, res) {
       } else {
         foundItem.checked = true;
         foundItem.save(err => {
-            if (err) {
-              console.log(err);
-              res.redirect("/mitbringliste");
-            } else {
-              console.log("updated Item");
-              res.redirect("/mitbringliste");
-            }
-          });         
+          if (err) {
+            console.log(err);
+            res.redirect("/mitbringliste");
+          } else {
+            res.redirect("/mitbringliste");
+          }
+        });
       }
     });
   }
