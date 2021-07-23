@@ -24,5 +24,5 @@ blogPostsSchema.plugin(encrypt, {
 //////////////////////////// Setup Collections ////////////////////////////
 const Post = new mongoose.model("BlogPost", blogPostsSchema);
 
-// Export Mongoose "User" model
+// Export Mongoose "Blog" model
 module.exports = mongoose.model("Post", blogPostsSchema);

@@ -20,5 +20,5 @@ guestsSchema.plugin(encrypt, {
 //////////////////////////// Setup Collections ////////////////////////////
 const Guest = new mongoose.model("Guest", guestsSchema);
 
-// Export Mongoose "User" model
+// Export Mongoose "Guest" model
 module.exports = mongoose.model("Guest", guestsSchema);

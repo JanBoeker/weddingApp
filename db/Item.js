@@ -21,5 +21,5 @@ itemsSchema.plugin(encrypt, {
 const Item = new mongoose.model("Item", itemsSchema);
 
 
-// Export Mongoose "User" model
+// Export Mongoose "Item" model
 module.exports = mongoose.model("Item", itemsSchema);

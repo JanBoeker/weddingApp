@@ -62,26 +62,25 @@
 
     <div class="box">
       <% checkedItems.forEach(function(item){ %>
-        <% console.log(item.checked) %>
-          <% if (item.checked===false) { %>
-            <form action="/updateItem" method="post">
-              <div class="item">
-                <input type="checkbox" onChange="this.form.submit()" name="checkbox" value="<%= item._id %>">
-                <p>
-                  <%= item.name %>
-                </p>
-              </div>
-              <input type="hidden" name="listName" value="<%= listTitle %>">
-            </form>
-            <% } %>
-              <% }) %>
+        <% if (item.checked===false) { %>
+          <form action="/updateItem" method="post">
+            <div class="item">
+              <input type="checkbox" onChange="this.form.submit()" name="checkbox" value="<%= item._id %>">
+              <p>
+                <%= item.name %>
+              </p>
+            </div>
+            <input type="hidden" name="listName" value="<%= listTitle %>">
+          </form>
+          <% } %>
+            <% }) %>
 
-                <form class="item" action="/newItem" method="post">
-                  <input class="text-input-item" type="text" name="newItem" placeholder="Neu" autocomplete="off">
-                  <button class="button-mitbringsl" type="submit" name="list" value="<%= listTitle %>">
-                    <i class="far fa-plus-circle"></i>
-                  </button>
-                </form>
+              <form class="item" action="/newItem" method="post">
+                <input class="text-input-item" type="text" name="newItem" placeholder="Neu" autocomplete="off">
+                <button class="button-mitbringsl" type="submit" name="list" value="<%= listTitle %>">
+                  <i class="far fa-plus-circle"></i>
+                </button>
+              </form>
     </div>
 
     <hr>
@@ -93,19 +92,14 @@
     </div>
     <div class="box">
       <% checkedItems.forEach(function(item){ %>
-        <% console.log(item.checked) %>
-          <% if (item.checked===true) { %>
-            <p><i class="far fa-check-circle checked"></i>
-              <%= item.name %>
-            </p>
-            <hr>
-            <% } %>
-              <% }) %>
+        <% if (item.checked===true) { %>
+          <p><i class="far fa-check-circle checked"></i>
+            <%= item.name %>
+          </p>
+          <hr>
+        <% } %>
+      <% }) %>
     </div>
-
-
-
-
   </div>
 
   <%- include("partials/footer"); -%>

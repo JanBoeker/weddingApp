@@ -19,7 +19,7 @@ userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
-//////////////////////////// Setup passpot.js ////////////////////////////
+//////////////////////////// Setup passport.js ////////////////////////////
 passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, done) {
