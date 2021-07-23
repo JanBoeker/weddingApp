@@ -13,16 +13,12 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 const encrypt = require("mongoose-encryption");
 
-const news = require("./news.js");
-
 const app = express();
 const port = process.env.PORT || 3000;
 
 //app.use(express.static("public"));
 app.use("/public", express.static("public"));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 // https://www.npmjs.com/package/express-session
@@ -38,7 +34,7 @@ app.use(passport.session());
 
 //////////////////////////// DB setup ////////////////////////////
 // connect with mongodb --> mongod --dbpath ~/data/db --> mongo
-const connectionTest = "mongodb://localhost:27017/weddingDB";
+// const connectionTest = "mongodb://localhost:27017/weddingDB";
 const connectionProd = "mongodb+srv://" + process.env.USERNAMEDB + ":" + process.env.PASSWORDDB + "@cluster0.v4edf.mongodb.net/weddingDB?retryWrites=true&w=majority";
 mongoose.connect(connectionProd, {
   useNewUrlParser: true,
@@ -50,73 +46,10 @@ mongoose.connect(connectionProd, {
 mongoose.set("useCreateIndex", true);
 
 //////////////////////////// schemas for DB ////////////////////////////
-const userSchema = new mongoose.Schema({
-  username: String,
-  category: String,
-  password: String,
-  secret: String
-});
-
-const blogPostsSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: [true, "No title added."]
-  },
-  content: {
-    type: String,
-    required: [true, "No content added."]
-  },
-  category: String
-});
-
-const itemsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "No item added."]
-  },
-  checked: Boolean
-});
-
-const guestsSchema = new mongoose.Schema({
-  firstname: String,
-  lastname: String,
-  category: String,
-  foreignID: String
-});
-
-//////////////////////////// Plugins for mongoose.js ////////////////////////////
-// Mongoose plugin: https://mongoosejs.com/docs/plugins.html
-userSchema.plugin(passportLocalMongoose);
-userSchema.plugin(findOrCreate);
-blogPostsSchema.plugin(encrypt, {
-  secret: process.env.SECRET_POSTS
-});
-itemsSchema.plugin(encrypt, {
-  secret: process.env.SECRET_ITEMS
-});
-guestsSchema.plugin(encrypt, {
-  secret: process.env.SECRET_GUESTS,
-  excludeFromEncryption: ["foreignID"]
-});
-
-//////////////////////////// Setup Collections ////////////////////////////
-const User = new mongoose.model("User", userSchema);
-const Post = new mongoose.model("BlogPost", blogPostsSchema);
-const Item = new mongoose.model("Item", itemsSchema);
-const Guest = new mongoose.model("Guest", guestsSchema);
-
-//////////////////////////// Setup passpot.js ////////////////////////////
-passport.use(User.createStrategy());
-
-passport.serializeUser(function (user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
-});
+const User = require("./db/User");
+const Post = require("./db/Blog");
+const Item = require("./db/Item");
+const Guest = require("./db/Guest");
 
 //////////////////////////// routes ////////////////////////////
 app.get("/", (req, res) => {
