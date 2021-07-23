@@ -20,7 +20,7 @@ router.get("/aktuelles", (req, res) => {
           if (err) {
             console.log(err);
           } else {
-
+            console.log(foundPosts);
             if (foundPosts.length === 0) {
 
               const defaultPost = new Post({

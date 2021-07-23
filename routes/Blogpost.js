@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../db/User");
+const Post = require("../db/Blog");
 
 router.get("/compose-blogpost", (req, res) => {
     if (req.isAuthenticated()) {
