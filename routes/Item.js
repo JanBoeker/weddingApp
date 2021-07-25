@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../db/User");
+const Item = require("../db/Item");
 
 //////////////////////////// post new item ////////////////////////////
 router.post("/newItem", function (req, res) {
