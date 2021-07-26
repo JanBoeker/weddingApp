@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../db/User");
+const Guest = require("../db/Guest");
+const passport = require("passport");
 
 router.get("/register", (req, res) => {
     if (req.isAuthenticated()) {
